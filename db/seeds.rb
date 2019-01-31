@@ -13,6 +13,7 @@ ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = 
 JoinTableSpecialityDoctor.destroy_all
 ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = 'join_table_speciality_doctors'")
 
+
 10.times do
   city = City.create!(city_name: Faker::GameOfThrones.city)
 end
