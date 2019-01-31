@@ -1,10 +1,15 @@
 require 'faker'
 
 Doctor.destroy_all
+ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = 'doctors'")
+Patient.destroy_all
+ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = 'patients'")
+Appointement.destroy_all
+ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = 'appointements'")
 
 
 10.times do
-  doctor = Doctor.create!(first_name: Faker::Name.unique.first_name, last_name: Faker::Name.unique.last_name, postal_code: Faker::Address.zip_code)
+  doctor = Doctor.create!(first_name: Faker::Name.unique.first_name, last_name: Faker::Name.unique.last_name, zip_code: Faker::Address.zip_code)
 end
 
 10.times do
