@@ -15,19 +15,41 @@ ActiveRecord::Schema.define(version: 2019013111070600) do
   create_table "appointments", force: :cascade do |t|
     t.integer "doctor_id"
     t.integer "patient_id"
+    t.datetime "date"
+    t.integer "city_id"
+    t.index ["city_id"], name: "index_appointments_on_city_id"
     t.index ["doctor_id"], name: "index_appointments_on_doctor_id"
     t.index ["patient_id"], name: "index_appointments_on_patient_id"
+  end
+
+  create_table "cities", force: :cascade do |t|
+    t.string "city_name"
   end
 
   create_table "doctors", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.string "zip_code"
+    t.integer "city_id"
+    t.index ["city_id"], name: "index_doctors_on_city_id"
+  end
+
+  create_table "join_table_speciality_doctors", force: :cascade do |t|
+    t.integer "doctor_id"
+    t.integer "speciality_id"
+    t.index ["doctor_id"], name: "index_join_table_speciality_doctors_on_doctor_id"
+    t.index ["speciality_id"], name: "index_join_table_speciality_doctors_on_speciality_id"
   end
 
   create_table "patients", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
+    t.integer "city_id"
+    t.index ["city_id"], name: "index_patients_on_city_id"
+  end
+
+  create_table "specialities", force: :cascade do |t|
+    t.string "speciality_name"
   end
 
 end
