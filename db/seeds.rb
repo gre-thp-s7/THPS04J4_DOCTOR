@@ -4,8 +4,8 @@ Doctor.destroy_all
 ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = 'doctors'")
 Patient.destroy_all
 ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = 'patients'")
-Appointement.destroy_all
-ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = 'appointements'")
+Appointment.destroy_all
+ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = 'appointments'")
 
 
 10.times do
@@ -17,5 +17,5 @@ end
 end
 
 40.times do
-  appointement = Appointement.create!(doctor_id: Doctor.all.sample, patient_id: Patient.all.sample)
+  appointment = Appointment.create!(doctor_id: Doctor.all.sample.id, patient_id: Patient.all.sample.id)
 end

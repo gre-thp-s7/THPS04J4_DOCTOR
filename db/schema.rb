@@ -12,6 +12,12 @@
 
 ActiveRecord::Schema.define(version: 2019013111070600) do
 
+  create_table "appointments", force: :cascade do |t|
+    t.integer "doctor_id"
+    t.integer "patient_id"
+    t.index ["doctor_id"], name: "index_appointments_on_doctor_id"
+    t.index ["patient_id"], name: "index_appointments_on_patient_id"
+  end
 
   create_table "doctors", force: :cascade do |t|
     t.string "first_name"
@@ -24,11 +30,4 @@ ActiveRecord::Schema.define(version: 2019013111070600) do
     t.string "last_name"
   end
 
-  create_table "appointements", force: :cascade do |t|
-    t.integer "doctor_id"
-    t.integer "patient_id"
-    t.index ["doctor_id"], name: "index_appointements_on_doctor_id"
-    t.index ["patient_id"], name: "index_appointements_on_patient_id"
-  end
-  
 end
